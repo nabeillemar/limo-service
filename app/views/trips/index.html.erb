@@ -1,0 +1,16 @@
+<h1>Hi <%=@user.username%> here are all your booked trips</h1>
+
+<% @user.trips.order_by_reservation_date.each do |trip| %>
+  <p><%= link_to trip.client_name, trip_path(trip) %></p>
+<% end %>
+
+<br><br>
+<p> If you would like to book a new trip click below</p>
+<br>
+
+<%= link_to "New Trip", new_trip_path %>
+
+<br><br>
+
+<p>If you would like to review our current list of drivers click below</p>
+<%= link_to "Current Driver List", drivers_path %>

@@ -1,0 +1,31 @@
+<h1> Show page</h1>
+
+
+Client Name: <%= @trip.client_name %>
+<br><br>
+Pick_up Location: <%= @trip.pick_up %> 
+<br><br>
+Drop Off Location: <%= @trip.drop_off %>
+<br><br>
+Driver: <%= @trip.driver.name %> 
+<br><br>
+Reservation Date: <%= @trip.reservation_date %>
+<br><br>
+Number of Passengers: <%= @trip.passengers %>
+<br><br>
+Pick up Time: <%= @trip.pick_up_time %>
+<br><br>
+Drop off Time: <%= @trip.drop_off_time %>
+
+
+<br><br>
+<%= link_to "New Trip", new_trip_path %>
+
+<br><br>
+<%= link_to "Client Dashboard", trips_path %>
+
+<br><br>
+<% if @trip.user == current_user %>
+  <%= link_to "Edit Trip", edit_trip_path(@trip) %>
+  <%= link_to "Delete Trip", trip_path(@trip), method: :delete  %>
+<% end %>
