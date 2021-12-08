@@ -1,5 +1,6 @@
 <h1>Welcome to Eagle Town Car</h1>
 
+<%= flash[:error] %>
 
 <br><br>
 <p> Please log in below </p>
@@ -13,5 +14,7 @@ or
 
 OR 
 
-<%= button_to "login with Gihhub", '/auth/github', method: 'post' %> 
+<%= link_to "Sign in Through Github", '/auth/github' %>
+
+
 

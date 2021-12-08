@@ -3,3 +3,7 @@
 <% @driver.each do |driver| %>
   <p><%= link_to driver.name, driver_path(driver) %></p>
 <% end %>
+
+
+<br><br>
+<%= link_to "Client Dashboard", trips_path %>

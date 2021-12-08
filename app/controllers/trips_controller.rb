@@ -1,58 +1,37 @@
 class TripsController < ApplicationController
   before_action :check_for_logged_in
 
-    def new #creates new form 
-      if params[:driver_id] && driver = Driver.find_by_id(params[:driver_id])
-        @trip = driver.trip.build
-      else 
+    def new 
        @trip = Trip.new
-     end 
     end 
 
-    def create
-      @trip = current_user.trips.build(trip_params)
+
+    def create 
+      @trip = current_user.trips.build(trip_params) 
       if @trip.save
-        redirect_to trip_path(@trip) #this is suppose to be trips#show 
+        redirect_to trip_path(@trip) 
       else 
         render :new
       end 
-      #@trip = Trip.new
-      #trip.client_name = params[:client_name]
-      #@trip.pick_up = params[:pick_up]
-      #@trip.drop_off = params[:drop_off]
-      #@trip.save!
-
-      #@trip = Trip.new(trip_params)
-      #@trip.save
-      #binding.pry
     end 
 
-
     def index 
-      @user = User.find(session[:user_id])
+      @user = current_user 
       @trips = Trip.where(params[:id])
 
       end 
 
 
-    #def index #the user should only see their rides that they booked, not sure why it is not working 
-     # @trips = Trip.all
-      #@users = User.all
-      #@trips = Trip.all.find(params[:id])
-      #binding.pry
-      #@trips = Trip.all.find_by(params[:id])
-      #@trips = Trip.where(user_id: == current_user)
-     #end 
-
-    def show 
-      @trip = Trip.find_by(id: params[:id])
-      @user = User.find(session[:user_id])
-      if !current_user == @user.id
-        redirect_to trip_path(@trip)
+ def show 
+    @user = current_user 
+    @trip = Trip.find_by(id: params[:id])
+    if  @user.id != @trip.user_id  
+      redirect_to trips_path
     end 
   end 
 
-    def edit
+
+    def edit 
       @trip = Trip.find_by(id: params[:id])
     end 
 
@@ -64,6 +43,7 @@ class TripsController < ApplicationController
         render :edit 
       end 
     end 
+
 
     def destroy 
       @trip = Trip.find_by(id: params[:id])

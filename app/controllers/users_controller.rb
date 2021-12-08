@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 
-    def new  #this creates our Sign up form which is in new.html.erb
+    def new  
         @user = User.new
     end 
 
-    def create # the form in new.html.erb gets posted to this and then gets redirect to either show page or the new page 
+    def create 
         @user = User.new(user_params)
        if @user.save
         session[:user_id] = @user.id 
-        render :show #this should be the dashboard or the destentation path 
+        render :show 
        else
         flash[:error] = "Please pick a unique email address and username"
         render :new

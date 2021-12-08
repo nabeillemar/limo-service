@@ -1,0 +1,47 @@
+<%= form_for(@trip) do |f| %>
+
+<%= render partial: 'layouts/errors', locals: {object: @trip} %>
+
+    <%= f.label :client_name %>
+    <%= f.text_field :client_name %>
+
+<br><br>
+    <%= f.label :pick_up %>
+    <%= f.text_field :pick_up %>
+
+<br><br>
+
+    <%= f.label :drop_off %>
+    <%= f.text_field :drop_off %>
+
+<br><br>
+
+   <%= f.label :reservation_date %>
+   <%= f.date_field :reservation_date %>
+
+<br><br>
+
+    <%= f.label :passengers %>
+    <%= f.number_field :passengers %>
+
+<br><br>
+
+    <%= f.label :pick_up_time %>
+    <%= f.time_field :pick_up_time %>
+
+<br><br>
+
+    <%= f.label :drop_off_time %>
+    <%= f.time_field :drop_off_time %>
+    
+<br><br>
+
+  <%= f.label :driver_id, "Select a Driver" %>
+  <%= f.collection_select :driver_id, Driver.all, :id, :name, prompt: true %>
+  <br><br>
+
+    <%= f.submit%>
+  <% end %>
+
+<br><br>
+<%= link_to "Client Dashboard", trips_path %>

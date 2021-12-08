@@ -1,5 +1,9 @@
 <h1> Show page</h1>
 
+username <%= @trip.user.username%>
+<br><br>
+<br><br>
+
 
 Client Name: <%= @trip.client_name %>
 <br><br>
@@ -7,15 +11,15 @@ Pick_up Location: <%= @trip.pick_up %>
 <br><br>
 Drop Off Location: <%= @trip.drop_off %>
 <br><br>
-Driver: <%= @trip.driver.name %> 
+Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver)%> 
 <br><br>
-Reservation Date: <%= @trip.reservation_date %>
+Reservation Date: <%= @trip.reservation_date.strftime("%m-%d-%Y") %>
 <br><br>
 Number of Passengers: <%= @trip.passengers %>
 <br><br>
-Pick up Time: <%= @trip.pick_up_time %>
+Pick up Time: <%= @trip.pick_up_time.strftime("%I:%M %p") %>
 <br><br>
-Drop off Time: <%= @trip.drop_off_time %>
+Drop off Time: <%= @trip.drop_off_time.strftime("%I:%M %p") %>
 
 
 <br><br>

@@ -1,6 +1,5 @@
-#Rails.application.config.middleware.use OmniAuth::Builder do
-   # provider :github, Rails.application.credentials.github[:key], Rails.application.credentials.github[:secret]
- # end
-
-
-  #OmniAuth.config.allowed_request_methods = %i[get]
+ Rails.application.config.middleware.use OmniAuth::Builder do
+      provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], {:provider_ignores_state => true}
+ end
+ 
+OmniAuth.config.allowed_request_methods = %i[get]

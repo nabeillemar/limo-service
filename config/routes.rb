@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
-  post '/auth/github/callback' =>  'sessions#gitcreate'
+  match '/auth/github/callback' =>  'sessions#gitcreate', via: [:get, :post]
 
   resources :users
 
   resources :trips
 
   resources :drivers do
-    resources :trips, only: [:new, :create, :show, :index]
+    resources :trips, only: [:show, :index]
   end 
 
 

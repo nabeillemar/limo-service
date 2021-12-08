@@ -8,4 +8,18 @@ Driver's car: <%= @driver.car %>
 
 <br><br>
 
+Driver's Trips:
+  <% @driver.trips.each do |trip| %>
+    <li><%= link_to trip.client_name, driver_trip_path(@driver, trip) %></li> 
+  <% end %>
+
+
+
+<br><br>
+
 <%= link_to "Current Driver List", drivers_path %>
+
+
+
+<br><br>
+<%= link_to "Client Dashboard", trips_path %>

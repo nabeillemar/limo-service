@@ -7,6 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Driver.create!(name: "John", car: "Lincoln Town Car")
-
-#drivers = Driver.create([{ name: "Bob", car: "Tesla}, {name: "Betty", car: "cadillac escalade"}])
+drivers = Driver.create([{ name: "Bob", car: "Cadillac Escalade"}, {name: "John", car: "Lincoln Town Car"}, {name: "Gary", car: "Lincoln MKZ"}])
