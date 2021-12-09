@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
        if @user.save
         session[:user_id] = @user.id 
-        render :show 
+        redirect_to trips_path(@user) 
        else
         flash[:error] = "Please pick a unique email address and username"
         render :new

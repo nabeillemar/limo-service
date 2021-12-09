@@ -24,7 +24,7 @@ class TripsController < ApplicationController
 
  def show 
     @user = current_user 
-    @trip = Trip.find_by(id: params[:id])
+    @trip = user_trip
     if  @user.id != @trip.user_id  
       redirect_to trips_path
     end 
@@ -32,11 +32,11 @@ class TripsController < ApplicationController
 
 
     def edit 
-      @trip = Trip.find_by(id: params[:id])
+      @trip = user_trip
     end 
 
     def update 
-      @trip = Trip.find_by(id: params[:id])
+      @trip = user_trip
       if @trip.update(trip_params)
         redirect_to trip_path(@trip)
       else
@@ -46,13 +46,17 @@ class TripsController < ApplicationController
 
 
     def destroy 
-      @trip = Trip.find_by(id: params[:id])
+      @trip = user_trip
       @trip.destroy
       redirect_to trips_path
     end 
 
 
     private 
+
+    def user_trip
+      @trip = @trip = Trip.find_by(id: params[:id])
+    end 
     
     def trip_params
         params.require(:trip).permit(:client_name, :pick_up, :drop_off, :reservation_date, :passengers, :pick_up_time, :drop_off_time, :driver_id, driver_attributes:[:name, :car])
